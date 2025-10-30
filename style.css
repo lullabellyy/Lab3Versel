@@ -1,0 +1,206 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+background-color: #FFFFFF;
+}	
+.nav{
+	font-family:'Helvetica Light';
+	font-size: 30px;
+	color: #000000
+}	
+.martop {
+	margin-top: 30px;
+}
+.pushr {
+    margin-right: 60px;
+}
+.push1 {
+    margin-right: 60px;
+}		
+.box {
+  	display: flex;
+	flex-direction: row;
+	justify-content: center; 
+	align-items: center;	
+}
+ A:link { 
+    text-decoration: none; /* Убирает подчеркивание для ссылок */
+	color: #000000; /* Цвет ссылки */
+   } 	
+		A:hover {
+    text-decoration: underline; /* Делает ссылку подчеркнутой при наведении на нее курсора */
+    color: #4344CD; /* Цвет ссылки */
+	transition: 0.5s;
+   } 
+
+/*ЦЕНТРАЛЬНАЯ НАДПИСЬ НА 1 СТРАНИЦЕ*/
+.container {
+	display: flex;
+	justify-content: center; 
+	align-items: baseline;
+}
+.colortext {
+	font-family:'Soyuz Grotesk';
+	font-size: 50px;
+     color: #81AAFC; 
+}
+
+.colortext1 {
+  font-family:'Soyuz Grotesk';
+  font-size: 50px;
+  color: #4344CD; 
+}
+.martop_LUL {
+  margin-top: 300px;
+}
+.martop1_LUL {
+  margin-left: 200px;
+}
+/*цветы на лул портф*/
+.animate2{
+  position:absolute;
+  margin:0 auto;/* устанваливаем блок div по центру страницы*/
+  width:480px; /* Ширина */
+  transition: 0.9s;
+  height: 360px;  /* Высота */                
+}
+.animate2 img {
+  position:absolute; /* абсолютное позиционирование*/
+  left: 0; /* выравниваем картинки по левому верхнему углу div-а*/
+  top: 0; /* выравниваем картинки по левому верхнему углу div-а */  
+  transition: 0.9s;
+}
+
+.animate2 img.first { /* первая картинка полностью прозрачная */
+  opacity:0;
+  filter:alpha(opacity=0);
+}
+.animate2:hover img.first { /* при наведении курсора первая картинка становится не прозрачной */
+  opacity:1;
+  filter:alpha(opacity=100);
+}
+.animate2:hover img.second, .animate2 img.second:hover { /* вторая при наведении курсора становится прозрачной */
+  opacity:0;
+
+  filter:alpha(opacity=0);
+}
+IMG.displayed {
+  display: block;
+  margin-left: auto;
+  margin-right: auto }
+
+/*ВТОРАЯ страница*/
+.martop_LULFLOW {
+  margin-top: 670px;
+  float: left; 
+  margin-right: 10px;
+}
+.mar_left_lula{
+	margin-left: 100px;
+}
+.text_right{
+	text-align: right;
+}
+ aside {
+    width: 800px;
+    float: right;
+	text-align: left;
+	font-family:'Helvetica Light';
+	font-size: 30px;
+	color: #000000
+   }
+.conteiner{
+	margin-top: 1200px;
+	margin-right: 200px;
+}
+
+.span_color{
+	color:#4344CD;
+	font-family: "Soyuz Grotesk";
+}
+.text_left{
+	margin-left: 100px;
+	text-align: left;
+	font-family:'Helvetica Light';
+	font-size: 24px;
+	color: #000000
+}
+.text_center{
+	margin-left: 50px;
+	margin-right: 50px;
+	text-aligh: left;
+	font-family:'Helvetica Light';
+	font-size: 24px;
+	color: #000000
+}
+.text_right{
+	margin-right: 200px;
+	text-align: left;
+	font-family:'Helvetica Light';
+	font-size: 24px;
+	color: #000000
+}
+.span_color2{
+	color:#81AAFC;
+	font-family: "Soyuz Grotesk";
+}
+
+.footer{
+	color:#81AAFC;
+	font-family: "Soyuz Grotesk";
+	font-size: 30px;
+	text-align: center;
+}
+.mar_all{
+	margin-top: 500px;
+}
+.textcols {
+	display: flex;
+	margin-top: 600px;
+	flex-wrap: wrap;
+	width: 100%;
+	
+	font-size: 30px;
+	color: #000000
+}
+.textcols-item {
+	display: flex;
+	flex-direction: column;
+	font-family:'Helvetica Light';
+	flex-basis: 100%;
+	flex: 1;
+	height: 30%;
+	weight:50;
+	margin-right: 200px;
+	margin-left: 200px;
+	margin-top: 400px;
+
+}
+.textcols-item + .textcols-item {
+	margin-left: 5%;
+}
+
+.martop_LULFLOW2 {
+  margin-top: 770px;
+  float: right; 
+  margin-right: 10px;
+}
+
+.ot{
+	margin-top: 150px;
+	
+}
+.ooo{
+	margin-top: 200px;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center; 
+	align-items: center;	
+	font-family: "Helvetica Light";
+	font-size: 20px;
+}
+.o1{
+	
+	margin-top: 240px;
+}
