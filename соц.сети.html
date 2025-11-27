@@ -7,7 +7,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script type="text/javascript">
     (function() {
-        emailjs.init("lab4forma");
+        emailjs.init("lab4form");
     })();
 </script>
 </head>
@@ -34,13 +34,13 @@
 	<div class="ooo">
 		<form id="feedbackForm">
 			<div style="margin-bottom: 20px;">
-				<label for="user_phone" style="display: block; margin-bottom: 5px; font-family: 'Helvetica Light'; font-size: 18px;">Номер телефона:</label>
-				<input type="tel" id="user_phone" name="user_phone" required style="width: 300px; padding: 10px; font-size: 16px; border: 1px solid #4344CD; border-radius: 5px;">
+				<label for="phone" style="display: block; margin-bottom: 5px; font-family: 'Helvetica Light'; font-size: 18px;">Номер телефона:</label>
+				<input type="tel" id="phone" name="phone" required style="width: 300px; padding: 10px; font-size: 16px; border: 1px solid #4344CD; border-radius: 5px;">
 			</div>
 			
 			<div style="margin-bottom: 20px;">
-				<label for="user_message" style="display: block; margin-bottom: 5px; font-family: 'Helvetica Light'; font-size: 18px;">Ваши пожелания:</label>
-				<textarea id="user_message" name="user_message" rows="5" required style="width: 300px; padding: 10px; font-size: 16px; border: 1px solid #4344CD; border-radius: 5px; font-family: 'Helvetica Light';"></textarea>
+				<label for="message" style="display: block; margin-bottom: 5px; font-family: 'Helvetica Light'; font-size: 18px;">Ваши пожелания:</label>
+				<textarea id="message" name="message" rows="5" required style="width: 300px; padding: 10px; font-size: 16px; border: 1px solid #4344CD; border-radius: 5px; font-family: 'Helvetica Light';"></textarea>
 			</div>
 			
 			<button type="submit" style="background-color: #4344CD; color: white; padding: 12px 30px; border: none; border-radius: 5px; font-size: 18px; cursor: pointer; font-family: 'Helvetica Light';">
@@ -48,11 +48,11 @@
 			</button>
 			
 			<div id="successMessage" style="display: none; margin-top: 20px; color: #4344CD; font-family: 'Helvetica Light'; font-size: 18px;">
-				Сообщение успешно отправлено! Я свяжусь с вами в ближайшее время.
+				✅ Сообщение успешно отправлено! Я свяжусь с вами в ближайшее время.
 			</div>
 			
 			<div id="errorMessage" style="display: none; margin-top: 20px; color: red; font-family: 'Helvetica Light'; font-size: 18px;">
-				Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз или свяжитесь со мной другим способом.
+				❌ Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз или свяжитесь со мной другим способом.
 			</div>
 		</form>
 	</div>
@@ -72,8 +72,19 @@
 			submitBtn.textContent = 'Отправка...';
 			submitBtn.disabled = true;
 			
-			// Используем sendForm вместо send
-			emailjs.sendForm('service_1fz69cd', 'template_eormdqb', this)
+			// Добавляем дату в данные формы
+			const formData = new FormData(this);
+			formData.append('date', new Date().toLocaleString('ru-RU'));
+			
+			// Создаем объект с данными для отправки
+			const templateParams = {
+				phone: document.getElementById('phone').value,
+				message: document.getElementById('message').value,
+				date: new Date().toLocaleString('ru-RU')
+			};
+			
+			// Отправляем через EmailJS
+			emailjs.send('service_1fz69cd', 'template_eormdqb', templateParams)
 				.then(function(response) {
 					console.log('SUCCESS!', response);
 					document.getElementById('successMessage').style.display = 'block';
