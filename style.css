@@ -204,3 +204,25 @@ IMG.displayed {
 	
 	margin-top: 240px;
 }
+/* Добавьте в конец файла style.css */
+
+/* Стили для формы обратной связи */
+form {
+    margin-top: 40px;
+    text-align: center;
+}
+
+input, textarea {
+    font-family: 'Helvetica Light';
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 5px #4344CD;
+}
+
+button:hover {
+    background-color: #81AAFC !important;
+    transition: 0.3s;
+}
