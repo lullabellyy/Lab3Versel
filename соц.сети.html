@@ -6,11 +6,6 @@
 <title>СОЦСЕТИ</title>
 <!-- Добавляем EmailJS -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script type="text/javascript">
-    (function() {
-        emailjs.init("lab4form"); // Ваш Public Key
-    })();
-</script>
 </head>
 
 <body>
@@ -35,13 +30,18 @@
 	<div class="ooo">
 		<form id="feedbackForm">
 			<div style="margin-bottom: 20px;">
-				<label for="phone" style="display: block; margin-bottom: 5px; font-family: 'Helvetica Light'; font-size: 18px;">Номер телефона:</label>
-				<input type="tel" id="phone" name="phone" required style="width: 300px; padding: 10px; font-size: 16px; border: 1px solid #4344CD; border-radius: 5px;">
+				<label for="user_name" style="display: block; margin-bottom: 5px; font-family: 'Helvetica Light'; font-size: 18px;">Ваше имя:</label>
+				<input type="text" id="user_name" name="user_name" style="width: 300px; padding: 10px; font-size: 16px; border: 1px solid #4344CD; border-radius: 5px;">
 			</div>
 			
 			<div style="margin-bottom: 20px;">
-				<label for="wishes" style="display: block; margin-bottom: 5px; font-family: 'Helvetica Light'; font-size: 18px;">Ваши пожелания:</label>
-				<textarea id="wishes" name="wishes" rows="5" required style="width: 300px; padding: 10px; font-size: 16px; border: 1px solid #4344CD; border-radius: 5px; font-family: 'Helvetica Light';"></textarea>
+				<label for="user_phone" style="display: block; margin-bottom: 5px; font-family: 'Helvetica Light'; font-size: 18px;">Номер телефона:</label>
+				<input type="tel" id="user_phone" name="user_phone" required style="width: 300px; padding: 10px; font-size: 16px; border: 1px solid #4344CD; border-radius: 5px;">
+			</div>
+			
+			<div style="margin-bottom: 20px;">
+				<label for="message" style="display: block; margin-bottom: 5px; font-family: 'Helvetica Light'; font-size: 18px;">Ваши пожелания:</label>
+				<textarea id="message" name="message" rows="5" required style="width: 300px; padding: 10px; font-size: 16px; border: 1px solid #4344CD; border-radius: 5px; font-family: 'Helvetica Light';"></textarea>
 			</div>
 			
 			<button type="submit" style="background-color: #4344CD; color: white; padding: 12px 30px; border: none; border-radius: 5px; font-size: 18px; cursor: pointer; font-family: 'Helvetica Light';">
@@ -61,30 +61,34 @@
 	<div class="o1"><footer><div class="footer"><p>2023 Designed by lullabellyy &#169;</p></div></footer></div>
 
 	<script>
+		// Инициализация EmailJS
+		emailjs.init("lab4forma");
+		
 		document.getElementById('feedbackForm').addEventListener('submit', function(event) {
 			event.preventDefault();
+			
+			// Показываем loading state
+			const submitBtn = this.querySelector('button[type="submit"]');
+			submitBtn.textContent = 'Отправка...';
+			submitBtn.disabled = true;
 			
 			// Скрываем предыдущие сообщения
 			document.getElementById('successMessage').style.display = 'none';
 			document.getElementById('errorMessage').style.display = 'none';
 			
-			// Получаем данные формы
-			const formData = {
-				phone: document.getElementById('phone').value,
-				wishes: document.getElementById('wishes').value,
-				to_email: 'dacha56271@gmail.com',
-				date: new Date().toLocaleString('ru-RU')
-			};
-			
-			// Отправляем через EmailJS
-			emailjs.send('service_1fz69cd', 'template_eormdqb', formData)
-				.then(function(response) {
-					console.log('SUCCESS!', response.status, response.text);
+			// Отправляем форму
+			emailjs.sendForm('service_1fz69cd', 'template_eormdqb', this)
+				.then(function() {
 					document.getElementById('successMessage').style.display = 'block';
 					document.getElementById('feedbackForm').reset();
 				}, function(error) {
 					console.log('FAILED...', error);
 					document.getElementById('errorMessage').style.display = 'block';
+				})
+				.finally(function() {
+					// Восстанавливаем кнопку
+					submitBtn.textContent = 'Отправить';
+					submitBtn.disabled = false;
 				});
 		});
 	</script>
