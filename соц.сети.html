@@ -7,7 +7,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script type="text/javascript">
     (function() {
-        emailjs.init("lab4form");
+        emailjs.init("tQFBbOWfU6hG2RCTu");
     })();
 </script>
 </head>
@@ -33,6 +33,8 @@
 	<!-- Форма обратной связи -->
 	<div class="ooo">
 		<form id="feedbackForm">
+			<input type="hidden" name="date" id="dateField">
+			
 			<div style="margin-bottom: 20px;">
 				<label for="phone" style="display: block; margin-bottom: 5px; font-family: 'Helvetica Light'; font-size: 18px;">Номер телефона:</label>
 				<input type="tel" id="phone" name="phone" required style="width: 300px; padding: 10px; font-size: 16px; border: 1px solid #4344CD; border-radius: 5px;">
@@ -72,19 +74,11 @@
 			submitBtn.textContent = 'Отправка...';
 			submitBtn.disabled = true;
 			
-			// Добавляем дату в данные формы
-			const formData = new FormData(this);
-			formData.append('date', new Date().toLocaleString('ru-RU'));
+			// Устанавливаем дату в hidden поле
+			document.getElementById('dateField').value = new Date().toLocaleString('ru-RU');
 			
-			// Создаем объект с данными для отправки
-			const templateParams = {
-				phone: document.getElementById('phone').value,
-				message: document.getElementById('message').value,
-				date: new Date().toLocaleString('ru-RU')
-			};
-			
-			// Отправляем через EmailJS
-			emailjs.send('service_1fz69cd', 'template_eormdqb', templateParams)
+			// Используем sendForm который автоматически берет данные из формы
+			emailjs.sendForm('service_1fz69cd', 'template_eormdqb', this)
 				.then(function(response) {
 					console.log('SUCCESS!', response);
 					document.getElementById('successMessage').style.display = 'block';
