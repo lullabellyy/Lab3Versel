@@ -77,7 +77,7 @@
 			};
 			
 			// Отправляем через EmailJS
-			emailjs.send('service_xxxxxxxxx', 'template_eormdqb', formData)
+			emailjs.send('lab4forma', 'template_eormdqb', formData)
 				.then(function(response) {
 					console.log('SUCCESS!', response.status, response.text);
 					document.getElementById('successMessage').style.display = 'block';
