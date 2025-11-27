@@ -7,7 +7,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script type="text/javascript">
     (function() {
-        emailjs.init("tQFBbOWfU6hG2RCTu");
+        emailjs.init("tQFBbOWfU6hG2RCTu"); // Правильный Public Key
     })();
 </script>
 </head>
@@ -77,14 +77,16 @@
 			// Устанавливаем дату в hidden поле
 			document.getElementById('dateField').value = new Date().toLocaleString('ru-RU');
 			
+			console.log('Отправка данных...');
+			
 			// Используем sendForm который автоматически берет данные из формы
 			emailjs.sendForm('service_1fz69cd', 'template_eormdqb', this)
 				.then(function(response) {
-					console.log('SUCCESS!', response);
+					console.log('✅ SUCCESS!', response);
 					document.getElementById('successMessage').style.display = 'block';
 					document.getElementById('feedbackForm').reset();
 				}, function(error) {
-					console.log('FAILED...', error);
+					console.log('❌ FAILED...', error);
 					document.getElementById('errorMessage').style.display = 'block';
 				})
 				.finally(function() {
